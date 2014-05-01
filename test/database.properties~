@@ -1,4 +1,0 @@
-jdbc.drivers=com.mysql.jdbc.Driver
-jdbc.url=jdbc:mysql:helloWorld
-jdbc.username=bookManager
-jdbc.password=admin
