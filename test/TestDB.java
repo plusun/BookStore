@@ -41,7 +41,7 @@ public class TestDB
 					{
 						
 						if (result.next())
-							System.out.println(result.getString(1));
+							System.out.println(result.getString("Message"));
 					}
 				stat.executeUpdate("DROP TABLE Greetings");
 			}
