@@ -1,3 +1,9 @@
+/**
+	 Access to database.
+	 @version 2014.5.1
+	 @author Yang Zheng @SJTU SE 12
+ */
+
 package database;
 
 import java.io.*;
@@ -27,7 +33,7 @@ public class Database
   private static final Path initialFile = Paths.get("database/initialization.sql");
   public static void initialize(Connection conn) throws IOException
   {
-    execSQL(conn, initialFile);
+		execSQL(conn, initialFile);
   }
   public static void execSQL(Connection conn, Path file) throws IOException
   {
