@@ -1,3 +1,0 @@
-You should be equiped with MySQL or Mariadb which contains an account and a database descripted in 'database/database.properties'.
-
-Use 'make testDB' to test the connection between driver and database.
