@@ -9,9 +9,6 @@ import java.nio.file.*;
 public class LoadIndex extends HttpServlet
 {
 	private String prefix;
-	private static final String dbconfig = "/config/database.properties";
-	private static final String storeconfig = "/config/bookStore.properties";
-	private static final String initconfig = "/config/initialization.sql";
 	public void init() throws ServletException
 	{
 		prefix = getServletContext().getRealPath("/");
@@ -23,9 +20,7 @@ public class LoadIndex extends HttpServlet
 		HttpSession session = request.getSession();
 		User user = session != null ? (User)session.getAttribute("user") : null;
 		String address;
-		BookStore store = new BookStore(Paths.get(prefix + dbconfig),
-																		Paths.get(prefix + storeconfig),
-																		Paths.get(prefix + initconfig));
+		BookStore store = Common.getBookStore(prefix);
 		if (user == null || !store.checkUser(user))
 			{
 				address = "/WEB-INF/JSP/welcome.jsp";

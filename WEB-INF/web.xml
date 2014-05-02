@@ -13,11 +13,20 @@
     <servlet-name>LoadIndex</servlet-name>
     <servlet-class>servlet.LoadIndex</servlet-class>
   </servlet>
-  
   <servlet-mapping>
     <servlet-name>LoadIndex</servlet-name>
     <url-pattern>/LoadIndex</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>LogIn</servlet-name>
+    <servlet-class>servlet.LogIn</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogIn</servlet-name>
+    <url-pattern>/LogIn</url-pattern>
+  </servlet-mapping>
+
   <welcome-file-list>
     <welcome-file>LoadIndex</welcome-file>
   </welcome-file-list>
