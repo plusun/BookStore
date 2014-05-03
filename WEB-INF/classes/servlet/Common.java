@@ -3,6 +3,7 @@ package servlet;
 import java.nio.file.*;
 import database.*;
 import java.io.*;
+import java.util.*;
 
 public class Common
 {
@@ -20,6 +21,20 @@ public class Common
 	public static Path initCPath(String prefix)
 	{
 		return Paths.get(prefix + initConfig);
+	}
+	public static String getAdministrator(String prefix)
+	{
+		try
+			{
+				Properties props = new Properties();
+				InputStream in = Files.newInputStream(BSCPath(prefix));
+				props.load(in);
+				return props.getProperty("bookStore.admin");
+			}
+		catch (IOException ex)
+			{
+				return null;
+			}
 	}
 	public static BookStore getBookStore(String prefix) throws IOException
 	{

@@ -4,6 +4,8 @@ generate:
 	javac -cp .:$(SERVLETAPI)  servlet/LoadIndex.java
 	javac -cp .:$(SERVLETAPI) servlet/LogIn.java
 	javac -cp .:$(SERVLETAPI) servlet/Register.java
+	javac -cp .:$(SERVLETAPI) servlet/DoOrder.java
+	javac -cp .:$(SERVLETAPI) servlet/AddBook.java
 	javac database/Database.java
 testDB:
 	@javac test/TestDB.java

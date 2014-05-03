@@ -36,6 +36,23 @@
     <url-pattern>/Register</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>DoOrder</servlet-name>
+    <servlet-class>servlet.DoOrder</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoOrder</servlet-name>
+    <url-pattern>/DoOrder</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AddBook</servlet-name>
+    <servlet-class>servlet.AddBook</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddBook</servlet-name>
+    <url-pattern>/AddBook</url-pattern>
+  </servlet-mapping>
 
   <welcome-file-list>
     <welcome-file>LoadIndex</welcome-file>

@@ -10,6 +10,7 @@ import java.util.*;
 
 public class LoadIndex extends HttpServlet
 {
+	private static final int EXPIRATION = 20;
 	private String prefix;
 	public void init() throws ServletException
 	{
@@ -36,6 +37,7 @@ public class LoadIndex extends HttpServlet
 						List<Order> orders = store.getOrders(user.id);
 						bean.Userinfo info = new bean.Userinfo(books, orders);
 						request.setAttribute("info", info);
+						session.setMaxInactiveInterval(EXPIRATION);
 						address = "/WEB-INF/JSP/store.jsp";
 					}
 			}
