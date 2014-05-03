@@ -5,6 +5,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
 import java.nio.file.*;
+import java.sql.*;
+import java.util.*;
 
 public class LoadIndex extends HttpServlet
 {
@@ -18,19 +20,37 @@ public class LoadIndex extends HttpServlet
 		throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
-		User user = session != null ? (User)session.getAttribute("user") : null;
+		bean.User u = session != null ? (bean.User)session.getAttribute("user") : null;
+		User user = u == null ? null : new User(u.getId(), u.getName(), u.getTele(), u.getPw());
 		String address;
 		BookStore store = Common.getBookStore(prefix);
-		if (user == null || !store.checkUser(user))
+		try
 			{
-				address = "/WEB-INF/JSP/welcome.jsp";
+				if (user == null || !store.checkUser(user))
+					{
+						address = "/WEB-INF/JSP/welcome.jsp";
+					}
+				else
+					{
+						List<Book> books = store.getBooks();
+						List<Order> orders = store.getOrders(user.id);
+						bean.Userinfo info = new bean.Userinfo(books, orders);
+						request.setAttribute("info", info);
+						address = "/WEB-INF/JSP/store.jsp";
+					}
 			}
-		else
+		catch (SQLException ex)
 			{
-				address = "/WEB-INF/JSP/store.jsp";
+				throw new IOException();
 			}
 		RequestDispatcher dispatcher =
 			request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
+	}
+	public void doPost(HttpServletRequest request,
+										HttpServletResponse response)
+		throws ServletException, IOException
+	{
+		doGet(request, response);
 	}
 }

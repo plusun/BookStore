@@ -25,7 +25,14 @@ public class Database
     String url = props.getProperty("jdbc.url");
     String username = props.getProperty("jdbc.username");
     String password = props.getProperty("jdbc.password");
-
+		try
+			{
+				Class.forName("com.mysql.jdbc.Driver");
+			}
+		catch (ClassNotFoundException ex)
+			{
+				throw new SQLException();
+			}
     return DriverManager.getConnection(url, username, password);
   }
   
@@ -66,8 +73,7 @@ public class Database
       }
     catch (SQLException ex)
       {
-        for (Throwable t : ex)
-          t.printStackTrace();
+				throw new IOException();
       }
   }
   public static void showResultSet(ResultSet result) throws SQLException

@@ -33,12 +33,11 @@ public class BookStore
 			}
 		catch (SQLException ex)
 			{
-				for (Throwable t : ex)
-					t.printStackTrace();
+				throw new IOException();
 			}
 	}
 	
-	public boolean addBook(Book book) 
+	public boolean addBook(Book book) throws SQLException
 	{
 		try
 			{
@@ -78,13 +77,11 @@ public class BookStore
 			}
 		catch (SQLException ex)
 			{
-				for (Throwable t : ex)
-					t.printStackTrace();
+				throw ex;
 			}
-		return false;
 	}
 		
-	public boolean checkUser(User user)
+	public boolean checkUser(User user) throws SQLException
 	{
 		try
 			{
@@ -101,13 +98,11 @@ public class BookStore
 			}
 		catch (SQLException ex)
 			{
-				for (Throwable t : ex)
-					t.printStackTrace();
+				throw ex;
 			}
-		return false;
 	}
 	
-	public boolean addUser(User user)
+	public boolean addUser(User user) throws SQLException
 	{
 		try
 			{
@@ -132,13 +127,11 @@ public class BookStore
 			}
 		catch (SQLException ex)
 			{
-				for (Throwable t : ex)
-					t.printStackTrace();
+				throw ex;
 			}
-		return false;
 	}
 	
-	public boolean addOrder(Order order)
+	public boolean addOrder(Order order) throws SQLException
 	{
 		try
 			{
@@ -190,13 +183,11 @@ public class BookStore
 			}
 		catch (SQLException ex)
 			{
-				for (Throwable t : ex)
-					t.printStackTrace();
+				throw ex;
 			}
-		return false;
 	}
 	
-	public List<Book> getBooks()
+	public List<Book> getBooks() throws SQLException
 	{
 		try
 			{
@@ -213,12 +204,34 @@ public class BookStore
 			}
 		catch (SQLException ex)
 			{
-				for (Throwable t : ex)
-					t.printStackTrace();
+				throw ex;
 			}
-		return null;
 	}
-	public List<Order> getOrders(String id)
+	public User getUser(String id) throws SQLException
+	{
+		try
+			{
+				final String query =
+					"SELECT * FROM user " +
+					"WHERE ID = ?";
+				PreparedStatement stat = conn.prepareStatement(query);
+				stat.setString(1, id);
+				ResultSet rs = stat.executeQuery();
+				User user = null;
+				if (rs.next())
+					{
+						user = new User(rs.getString("ID"), rs.getString("name"),
+														rs.getString("telephone"), rs.getString("password"));
+					}
+				return user;
+			}
+		catch (SQLException ex)
+			{
+				throw ex;
+			}
+
+	}
+	public List<Order> getOrders(String id) throws SQLException
 	{
 		try
 			{
@@ -241,10 +254,9 @@ public class BookStore
 			}
 		catch (SQLException ex)
 			{
-				for (Throwable t : ex)
-					t.printStackTrace();
+				throw ex;
 			}
-		return null;
+
 	}
 }
 

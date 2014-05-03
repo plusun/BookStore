@@ -6,9 +6,9 @@ import java.io.*;
 
 public class Common
 {
-	private static final String dbConfig = "/config/database.properties";
-	private static final String storeConfig = "/config/bookStore.properties";
-	private static final String initConfig = "/config/initialization.sql";
+	private static final String dbConfig = "config/database.properties";
+	private static final String storeConfig = "config/bookStore.properties";
+	private static final String initConfig = "config/initialization.sql";
 	public static Path DBCPath(String prefix)
 	{
 		return Paths.get(prefix + dbConfig);
@@ -23,6 +23,6 @@ public class Common
 	}
 	public static BookStore getBookStore(String prefix) throws IOException
 	{
-		return new BookStore(DBCPath(prefix), BSCPath(prefix), initCPath(prefix));
+		return new BookStore(BSCPath(prefix), DBCPath(prefix), initCPath(prefix));
 	}		
 }
