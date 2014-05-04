@@ -10,7 +10,7 @@ import java.util.*;
 
 public class LoadIndex extends HttpServlet
 {
-	private static final int EXPIRATION = 20;
+	private static final int EXPIRATION = 3 * 60;
 	private String prefix;
 	public void init() throws ServletException
 	{
