@@ -1,4 +1,4 @@
-This project adopt MariaDB(MySQL) database and Java Servlet(tomcat7).
+This project adopts MariaDB(MySQL) database and Java Servlet(tomcat7).
 At first, you should change the variable APPDIR in the outer Makefile to your web application path of tomcat.
 Then, you need to create a database whose name is correspondent with the value of 'jdbc.url' in 'config/database.properties' file. Also, you need to create an account in your database like as 'jdbc.username' and 'jdbc.password' indicated.
 Finally, just run 'make && make copy', and you could run this application.

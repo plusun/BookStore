@@ -10,3 +10,4 @@ copy:
 clean:
 	(cd WEB-INF/classes; make clean)
 	rm -f *~
+	sudo rm -rf $(APPDIR)
